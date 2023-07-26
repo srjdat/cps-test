@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public class TenCPS {
     private Button cpsBtn, resultBtn;
     private static int count;
-    private long startTime;
 
     public void display() {
         //the stage for the five cps thing
@@ -81,7 +80,7 @@ public class TenCPS {
     class TimerThread implements Runnable {
         @Override
         public void run() {
-            startTime = System.currentTimeMillis();
+            long startTime = System.currentTimeMillis();
             long secondsElapsed;
 
             while(!cpsBtn.isDisabled()) {

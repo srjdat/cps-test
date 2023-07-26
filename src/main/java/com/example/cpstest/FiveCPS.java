@@ -4,19 +4,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.util.concurrent.TimeUnit;
 
 public class FiveCPS {
 
     private Button cpsBtn, resultBtn;
     private static int count;
-    private long startTime;
 
     public void display() {
         //the stage for the five cps thing
@@ -89,7 +84,7 @@ public class FiveCPS {
 
         @Override
         public void run() {
-            startTime = System.currentTimeMillis();
+            long startTime = System.currentTimeMillis();
             long secondsElapsed;
 
             while(!cpsBtn.isDisabled()) {
