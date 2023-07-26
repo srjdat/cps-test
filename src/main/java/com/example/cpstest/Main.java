@@ -40,7 +40,6 @@ public class Main extends Application  {
         stage.setScene(s);
 
         stage.show();
-
     }
 
     public static void main(String[] args) {
