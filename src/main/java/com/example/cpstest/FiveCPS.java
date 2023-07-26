@@ -16,6 +16,7 @@ public class FiveCPS {
 
     private Button cpsBtn, resultBtn;
     private static int count;
+    private long startTime;
 
     public void display() {
         //creating a new thread so the timer works
@@ -88,7 +89,7 @@ public class FiveCPS {
 
         @Override
         public void run() {
-            long startTime = System.currentTimeMillis();
+            startTime = System.currentTimeMillis();
             long secondsElapsed;
 
             while(!cpsBtn.isDisabled()) {
