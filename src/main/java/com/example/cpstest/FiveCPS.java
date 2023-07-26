@@ -15,8 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class FiveCPS {
 
     private Button cpsBtn, resultBtn;
-    private static Label lbl;
-    public static int count;
+    private static int count;
 
     public void display() {
         //creating a new thread so the timer works
@@ -26,6 +25,7 @@ public class FiveCPS {
 
         //the stage for the five cps thing
         Stage window = new Stage();
+        window.setTitle("5 Sec Test");
 
         //all the variables
         cpsBtn = new Button("Click Here!");
@@ -39,16 +39,22 @@ public class FiveCPS {
             Stage results = new Stage();
             results.setTitle("Results");
 
+            Button closeBtn = new Button("Close");
+            closeBtn.setOnAction(close -> {
+                results.close();
+                window.close();
+            });
+
             Label resultLbl = new Label();
-            resultLbl.setFont(new Font(20));
+            resultLbl.setFont(new Font(14));
             Label cpsLbl = new Label();
-            cpsLbl.setFont(new Font(20));
+            cpsLbl.setFont(new Font(14));
             resultLbl.setText("Your CPS was: \n");
             cpsLbl.setText(String.format("%.2f", (double)count/5.0));
 
-            VBox finalBox = new VBox(15);
+            VBox finalBox = new VBox(8);
             finalBox.setAlignment(Pos.CENTER);
-            finalBox.getChildren().addAll(resultLbl, cpsLbl);
+            finalBox.getChildren().addAll(resultLbl, cpsLbl, closeBtn);
 
             Scene finalScene = new Scene(finalBox, 150, 150);
             results.setScene(finalScene);
@@ -61,7 +67,7 @@ public class FiveCPS {
 
         });
 
-        lbl = new Label("Click on the Button as fast as you can!");
+        Label lbl = new Label("Click on the Button as fast as you can!");
 
         //layout and setting the scene in the stage
         VBox pane = new VBox(15);

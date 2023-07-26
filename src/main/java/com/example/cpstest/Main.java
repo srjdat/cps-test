@@ -20,9 +20,13 @@ public class Main extends Application  {
         //the main scene
         //doing all the stuff with the buttons
         btn = new Button("5 Second CPS Test");
-        btn2 = new Button("10 Second CPS Test");
         btn.setOnAction(e -> {
             new FiveCPS().display();
+        });
+
+        btn2 = new Button("10 Second CPS Test");
+        btn2.setOnAction(e -> {
+            new TenCPS().display();
         });
 
         VBox pane = new VBox(15);
