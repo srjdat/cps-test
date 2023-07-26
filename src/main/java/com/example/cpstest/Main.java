@@ -9,11 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application  {
-
     Button btn, btn2;
-
-    int test;
-    public static int count1;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -44,17 +40,5 @@ public class Main extends Application  {
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public static class CPS {
-        private int cps;
-
-        public CPS(int cps) {
-            this.cps = cps;
-        }
-
-        public void setCPS(int cps) {
-            this.cps = cps;
-        }
     }
 }
