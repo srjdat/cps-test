@@ -79,7 +79,6 @@ public class TenCPS {
     }
 
     class TimerThread implements Runnable {
-
         @Override
         public void run() {
             long startTime = System.currentTimeMillis();
