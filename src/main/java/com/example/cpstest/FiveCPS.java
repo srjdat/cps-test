@@ -19,11 +19,6 @@ public class FiveCPS {
     private long startTime;
 
     public void display() {
-        //creating a new thread so the timer works
-        //thank you, @xyve7, for helping me with this part
-        Thread t = new Thread(new TimerThread());
-        t.start();
-
         //the stage for the five cps thing
         Stage window = new Stage();
         window.setTitle("5 Sec Test");
@@ -32,8 +27,15 @@ public class FiveCPS {
         cpsBtn = new Button("Click Here!");
         cpsBtn.setOnAction(e -> {
             count++;
+            if(count == 1) {
+                //creating a new thread so the timer works
+                //thank you, @xyve7, for helping me with this part
+                Thread t = new Thread(new TimerThread());
+                t.start();
+            }
         });
 
+        //buttons
         resultBtn = new Button("Results");
         resultBtn.setVisible(false);
         resultBtn.setOnAction(e -> {
@@ -44,6 +46,7 @@ public class FiveCPS {
             closeBtn.setOnAction(close -> {
                 results.close();
                 window.close();
+                count = 0;
             });
 
             Label resultLbl = new Label();
@@ -64,6 +67,7 @@ public class FiveCPS {
             results.setOnCloseRequest(exit -> {
                 results.close();
                 window.close();
+                count = 0;
             });
 
         });
@@ -79,10 +83,6 @@ public class FiveCPS {
         window.setScene(cpsScene);
 
         window.show();
-    }
-
-    public int getCount() {
-        return count;
     }
 
     class TimerThread implements Runnable {

@@ -11,13 +11,9 @@ import javafx.stage.Stage;
 public class TenCPS {
     private Button cpsBtn, resultBtn;
     private static int count;
+    private long startTime;
 
     public void display() {
-        //creating a new thread so the timer works
-        //thank you, @xyve7, for helping me with this part
-        Thread t = new Thread(new TimerThread());
-        t.start();
-
         //the stage for the five cps thing
         Stage window = new Stage();
         window.setTitle("10 Sec Test");
@@ -26,6 +22,12 @@ public class TenCPS {
         cpsBtn = new Button("Click Here!");
         cpsBtn.setOnAction(e -> {
             count++;
+            if(count == 1) {
+                //creating a new thread so the timer works
+                //thank you, @xyve7, for helping me with this part
+                Thread t = new Thread(new TimerThread());
+                t.start();
+            }
         });
 
         resultBtn = new Button("Results");
@@ -36,6 +38,7 @@ public class TenCPS {
 
             Button closeBtn = new Button("Close");
             closeBtn.setOnAction(close -> {
+                count = 0;
                 results.close();
                 window.close();
             });
@@ -56,6 +59,7 @@ public class TenCPS {
             results.show();
 
             results.setOnCloseRequest(exit -> {
+                count = 0;
                 results.close();
                 window.close();
             });
@@ -74,14 +78,10 @@ public class TenCPS {
         window.show();
     }
 
-    public int getCount() {
-        return count;
-    }
-
     class TimerThread implements Runnable {
         @Override
         public void run() {
-            long startTime = System.currentTimeMillis();
+            startTime = System.currentTimeMillis();
             long secondsElapsed;
 
             while(!cpsBtn.isDisabled()) {
