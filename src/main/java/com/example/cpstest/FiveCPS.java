@@ -20,9 +20,12 @@ public class FiveCPS {
 
         //all the variables
         cpsBtn = new Button("Click Here!");
+        cpsBtn.setPrefHeight(50);
+        cpsBtn.setMinHeight(50);
+        cpsBtn.setMaxHeight(50);
         cpsBtn.setOnAction(e -> {
             count++;
-            if(count == 1) {
+            if (count == 1) {
                 //creating a new thread so the timer works
                 //thank you, @xyve7, for helping me with this part
                 Thread t = new Thread(new TimerThread());
@@ -49,7 +52,7 @@ public class FiveCPS {
             Label cpsLbl = new Label();
             cpsLbl.setFont(new Font(14));
             resultLbl.setText("Your CPS was: \n");
-            cpsLbl.setText(String.format("%.2f", (double)count/5.0));
+            cpsLbl.setText(String.format("%.2f", (double) count / 5.0));
 
             VBox finalBox = new VBox(8);
             finalBox.setAlignment(Pos.CENTER);
@@ -64,7 +67,6 @@ public class FiveCPS {
                 window.close();
                 count = 0;
             });
-
         });
 
         Label lbl = new Label("Click on the Button as fast as you can!");
@@ -87,8 +89,9 @@ public class FiveCPS {
             long startTime = System.currentTimeMillis();
             long secondsElapsed;
 
-            while(!cpsBtn.isDisabled()) {
-                secondsElapsed = (System.currentTimeMillis() - startTime) / 1000;
+            while (!cpsBtn.isDisabled()) {
+                secondsElapsed =
+                    (System.currentTimeMillis() - startTime) / 1000;
                 if (secondsElapsed == 5) {
                     cpsBtn.setDisable(true);
                     resultBtn.setVisible(true);

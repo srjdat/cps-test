@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class TenCPS {
+
     private Button cpsBtn, resultBtn;
     private static int count;
 
@@ -19,9 +20,13 @@ public class TenCPS {
 
         //all the variables
         cpsBtn = new Button("Click Here!");
+        cpsBtn.setMinHeight(50);
+        cpsBtn.setPrefHeight(50);
+        cpsBtn.setMaxHeight(50);
+
         cpsBtn.setOnAction(e -> {
             count++;
-            if(count == 1) {
+            if (count == 1) {
                 //creating a new thread so the timer works
                 //thank you, @xyve7, for helping me with this part
                 Thread t = new Thread(new TimerThread());
@@ -47,7 +52,7 @@ public class TenCPS {
             Label cpsLbl = new Label();
             cpsLbl.setFont(new Font(14));
             resultLbl.setText("Your CPS was: \n");
-            cpsLbl.setText(String.format("%.2f", (double)count/5.0));
+            cpsLbl.setText(String.format("%.2f", (double) count / 10.0));
 
             VBox finalBox = new VBox(8);
             finalBox.setAlignment(Pos.CENTER);
@@ -78,13 +83,15 @@ public class TenCPS {
     }
 
     class TimerThread implements Runnable {
+
         @Override
         public void run() {
             long startTime = System.currentTimeMillis();
             long secondsElapsed;
 
-            while(!cpsBtn.isDisabled()) {
-                secondsElapsed = (System.currentTimeMillis() - startTime) / 1000;
+            while (!cpsBtn.isDisabled()) {
+                secondsElapsed =
+                    (System.currentTimeMillis() - startTime) / 1000;
                 if (secondsElapsed == 10) {
                     cpsBtn.setDisable(true);
                     resultBtn.setVisible(true);
